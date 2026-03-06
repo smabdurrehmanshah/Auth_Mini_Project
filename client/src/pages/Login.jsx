@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigate, NavLink } from "react-router";
 import { api } from "../services/axios";
+import { AuthProvider } from "../context/AuthContext";
 
 export function Login() {
   const [user, setUser] = useState({
@@ -8,6 +9,9 @@ export function Login() {
     password: "",
   });
   const [error, setError] = useState("");
+  const { user: currentUser } = useContext(AuthProvider);
+
+  if (currentUser) <Navigate to="/" />;
 
   const handleLoginFormInput = (event) => {
     const { name, value } = event.target;

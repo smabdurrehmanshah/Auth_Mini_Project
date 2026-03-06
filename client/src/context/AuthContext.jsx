@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
       try {
         const response = await axios.get(
-          "https://auth-mini-project-k879d68f8-abdur-rehman-shahs-projects.vercel.app/api/v1/users/me",
+          `${import.meta.env.VITE_API_URL}/api/v1/users/me`,
           {
             withCredentials: true,
           },

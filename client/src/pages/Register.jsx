@@ -10,6 +10,9 @@ export function Register() {
     profileImage: null,
   });
   const [error, setError] = useState("");
+  const { user: currentUser } = useContext(AuthProvider);
+
+  if (currentUser) <Navigate to="/" />;
 
   const handleRegistrationFormInput = (event) => {
     const { name, value } = event.target;
