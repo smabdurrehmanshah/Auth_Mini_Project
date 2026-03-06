@@ -18,6 +18,13 @@ app.use(
     credentials: true,
   }),
 );
+
+// Handle preflight requests for all routes
+app.options("*", cors({
+  origin: "https://shah-mini-auth.netlify.app",
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes);
