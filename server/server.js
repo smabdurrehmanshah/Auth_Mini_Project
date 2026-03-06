@@ -10,7 +10,6 @@ await connectedDB();
 
 app.use(cors());
 
-
 app.use(express.json());
 app.use(cookieParser());
 
@@ -20,3 +19,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Serving running on ${PORT} port`);
+});
