@@ -1,7 +1,7 @@
 import express from "express";
-import authRoutes from "../routes/auth_routes.js";
-import userRoutes from "../routes/userRoutes.js";
-import connectedDB from "../config/db.js";
+import authRoutes from "./routes/auth_routes.js";
+import userRoutes from "./routes/userRoutes.js";
+import connectedDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
