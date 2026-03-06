@@ -1,7 +1,24 @@
+import redisClient from "../config/redis.js";
 import { User } from "../models/user_model.js";
 
 export const getAllUsers = async (req, res) => {
   try {
+    const cacheKey = "all_users";
+
+    const cachedUsers = await redisClient.get(cacheKey);
+
+    if (cachedUsers) {
+      console.log("Serving from Redis Cache");
+      return res.status(200).json({
+        isSuccess: true,
+        message: "All users",
+        users: JSON.parse(cachedUsers),
+        count: JSON.parse(cachedUsers).length,
+      });
+    }
+
+    console.log("Fetching from Database");
+
     const users = await User.find().select("-password").lean();
 
     const usersData = users.map((user) => ({
@@ -9,8 +26,10 @@ export const getAllUsers = async (req, res) => {
       profileImage: user.profileImage.url,
     }));
 
-    console.log(usersData);
-    
+    await redisClient.set(cacheKey, JSON.stringify(usersData), {
+      EX: 60,
+    });
+
     return res.status(200).json({
       isSuccess: true,
       message: "All users",
