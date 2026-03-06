@@ -8,36 +8,8 @@ import cors from "cors";
 const app = express();
 await connectedDB();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://shah-mini-auth.netlify.app",
-];
+app.use(cors());
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  }),
-);
-
-// ✅ CORS middleware for Vercel
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://shah-mini-auth.netlify.app",
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-  next();
-});
 
 app.use(express.json());
 app.use(cookieParser());
