@@ -40,7 +40,7 @@ This project demonstrates how modern web applications handle authentication, fil
 ## 🌐 Live Deployment
 
 **Frontend (Netlify)**  
-👉 https://shah-mini-auth.netlify.app/login
+👉 https://shah-mini-auth.netlify.app
 
 **Backend (API Server)**  
 👉 https://auth-mini-project-k879d68f8-abdur-rehman-shahs-projects.vercel.app
