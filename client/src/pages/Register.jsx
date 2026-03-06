@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigate, NavLink } from "react-router";
 import { api } from "../services/axios";
+import { AuthContext } from "../context/AuthContext";
 
 export function Register() {
   const [user, setUser] = useState({
@@ -10,7 +11,7 @@ export function Register() {
     profileImage: null,
   });
   const [error, setError] = useState("");
-  const { user: currentUser } = useContext(AuthProvider);
+  const { user: currentUser } = useContext(AuthContext);
 
   if (currentUser) <Navigate to="/" />;
 
