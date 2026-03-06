@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3000/api/v1",
+  baseURL: "https://auth-mini-project-k879d68f8-abdur-rehman-shahs-projects.vercel.app",
   withCredentials: true,
 });
