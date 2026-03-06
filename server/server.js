@@ -8,9 +8,14 @@ import cors from "cors";
 const app = express();
 await connectedDB();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://shah-mini-auth.netlify.app"
+];
+
 app.use(
   cors({
-    origin: "https://shah-mini-auth.netlify.app",
+    origin: allowedOrigins,
     credentials: true,
   }),
 );
