@@ -8,10 +8,6 @@ import cors from "cors";
 const app = express();
 await connectedDB();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.use(
   cors({
     origin: "https://shah-mini-auth.netlify.app",
@@ -27,6 +23,11 @@ app.options("*", cors({
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 
